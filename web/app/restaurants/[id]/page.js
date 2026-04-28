@@ -52,6 +52,23 @@ export default async function RestaurantDetailPage({ params }) {
           <span>⭐ {restaurant.note}/5</span>
         </div>
       </div>
+      
+      <div style={{ marginTop: '20px' }}>
+  <Link
+    href={`/commander/${restaurant._id}`}
+    style={{
+      display: 'inline-block',
+      padding: '10px 24px',
+      background: '#52B788',
+      color: 'white',
+      borderRadius: '8px',
+      fontWeight: '600',
+      fontSize: '1rem',
+    }}
+  >
+    Commander ici
+  </Link>
+</div>
 
       <section className="plats-section">
         <h2>Menu ({plats.length} plats)</h2>
