@@ -1,20 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const restaurantController = require('../controllers/restaurantController');
+const mongoose = require('mongoose');
 
-// GET    /api/restaurants          — Liste de tous les restaurants
-router.get('/', restaurantController.getAll);
+const restaurantSchema = new mongoose.Schema({
+  nom: { type: String, required: true },
+  adresse: { type: String, required: true },
+  specialite: { type: String },
+  note: { type: Number, default: 0 },
+  image: { type: String },
+  telephone: { type: String }
+}, { timestamps: true });
 
-// GET    /api/restaurants/:id      — Détail d'un restaurant
-router.get('/:id', restaurantController.getById);
-
-// POST   /api/restaurants          — Créer un restaurant
-router.post('/', restaurantController.create);
-
-// PUT    /api/restaurants/:id      — Modifier un restaurant
-router.put('/:id', restaurantController.update);
-
-// DELETE /api/restaurants/:id      — Supprimer un restaurant
-router.delete('/:id', restaurantController.delete);
-
-module.exports = router;
+// ✅ On exporte uniquement le modèle
+module.exports = mongoose.model('Restaurant', restaurantSchema);
